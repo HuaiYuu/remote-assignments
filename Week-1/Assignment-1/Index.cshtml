@@ -1,0 +1,212 @@
+﻿@using static BOX.Models.Flat
+@using static BOX.Models.Flat.ResultsGetCrmOrder
+
+@model BOX.Models.FlatVM
+
+@{
+    ViewBag.Title1 = "平板訂單";
+    ViewBag.Title = "平板訂單搜尋";
+    ViewBag.titleurl = "search";
+    var today = ViewBag.datetoday;
+    var today1 = ViewBag.datetoday1;
+    var item = ViewBag.SelectList;
+    var name = ViewBag.name;
+}
+
+
+<div class="container">    
+    @(Html.DevExtreme().DataGrid<DataGetCrmOrder>()
+        .ID("orderid")
+        .DataSource(Model.ResultsGetCrmOrder.Data)
+        .ShowBorders(true)
+        .SearchPanel(p => p.Visible(false).Width(400)
+        .Placeholder("輸入工單號碼...").Text(""))
+        .Paging(p => p.PageSize(15))
+        .HeaderFilter(headerFilter => headerFilter.Visible(true))
+        .ColumnHidingEnabled(true)        
+        .ColumnAutoWidth(true)
+        .Columns(columns =>
+        {
+            columns.AddFor(m => m.oea01).Width(150);
+            columns.AddFor(m => m.oea02).Format("yyyy/MM/dd");
+            columns.AddFor(m => m.oeb15).Format("yyyy/MM/dd");         
+            columns.AddFor(m => m.occ02);
+            columns.AddFor(m => m.ocy04);
+            columns.AddFor(m => m.oeb12);
+            columns.AddFor(m => m.oeb908);
+            columns.AddFor(m => m.oeb113);
+            columns.AddFor(m => m.oeb100);
+            columns.AddFor(m => m.oeb101);
+             columns.AddFor(m => m.yxcc);
+        })        
+       
+        .ShowBorders(true)        
+        .AllowColumnResizing(true)
+        .OnCellPrepared("dataGrid_cellPrepared")        
+        .Summary(s => s
+        .TotalItems(totalItems =>
+        {
+            totalItems.AddFor(m =>m.oea01).SummaryType(SummaryType.Count);
+        })
+        )
+        )
+</div>
+
+
+@(
+        Html.DevExtreme().Popup()
+        .ID("employee-popup")
+        .Width(300)
+        .Height(280)
+        .Container(".dx-viewport")
+        .ShowTitle(true)
+        .Title("Information")
+        .DragEnabled(false)
+        .HideOnOutsideClick(true)
+        .ShowCloseButton(false)
+        .ToolbarItems(barItems =>
+        {
+            barItems.Add().Toolbar(Toolbar.Top).Widget(widget => widget.Button().Text("關閉").OnClick(@<text>
+                function hideInfo(data) {
+                const popup = $("#employee-popup").dxPopup("instance");
+                popup.hide();
+                }
+            </text>));
+        }       
+        ) 
+ )
+ @*<ul class="employees">
+    @if (Model.ResultsGetCrmOrder.Data != null)
+    @foreach (var employee in Model.ResultsGetCrmOrder.Data)
+    {
+        <li>           
+            @using (Html.DevExtreme().NamedTemplate("popup-template-"))
+            {
+                <span>
+                    <p>
+                        工單號碼:
+                        <span>@employee.oea01</span>                       
+                    </p>                   
+                </span>
+            }
+        </li>
+    }
+</ul>*@
+
+
+<script>
+
+    function Vertifyname()
+    {
+        //var myHeaders = new Headers();
+        //myHeaders.append("Content-Type", "text/plain");
+
+        //var raw = "{\r\n\"account\":\"t555y\",\r\n\"password\":\"p88888888861\"\r\n}";
+
+        //var requestOptions = {
+        //    method: 'POST',
+        //    headers: myHeaders,
+        //    body: raw,
+        //    redirect: 'follow'
+        //};
+
+        //fetch("https://apigateway.longchenpaper.com:8080/Api/gettoken", requestOptions)
+        //    .then(response => response.text())
+        //    .then(result => console.log(result))
+        //    .catch(error => console.log('error', error));
+        //fetch('https://apigateway.longchenpaper.com:8080/Api/gettoken',
+        //{
+        //    method: 'POST',
+        //    body: JSON.stringify(
+        //    {                   
+        //     account: "123",
+        //     password: ""
+               
+        //    })
+        //})
+        //    .then(response => response.json())
+        //    .then(data => 
+        //        {
+               
+        //        console.log(data);
+        //    });
+
+        //fetch('https://apigateway.longchenpaper.com:8080/Api/getstaffaccount', 
+        //{
+        //    method: 'POST',
+        //    body: JSON.stringify({
+        //        Area: "t",
+        //        FactId: "t4",
+        //        EmpNO: "s0223",
+        //        Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6WyIxMjMiLCIiXSwibmJmIjoxNjc1MzE3OTQzLCJleHAiOjE2NzU0OTA3NDMsImlhdCI6MTY3NTMxNzk0M30.Qhf7ktSP5DSOYRl6XPa0dq1qbwvtfIC61_cJEBGZ_sE"
+        //    })
+        //})
+        //    .then(response => response.json())
+        //    .then(data => {
+        //        var hh = document.getElementsByTagName("span");
+        //        console.log(hh);
+        //        document.getElementsByTagName("span")[3].innerHTML = data.Data[0].RevName;
+        //    });
+    }
+
+    function dataGrid_cellPrepared(e) 
+    {
+
+        console.log(e);
+        if (e.rowType == "data" && e.column.dataField == "exitlist") {
+            fieldHtml = "<span class=" + "\" badge bg-warning text-dark \"" + ">未完成</span>";
+            fieldHtml1 = "<span class=" + "\" badge bg-success text-white \"" + ">已出</span>";
+            fieldHtml2 = "<span class=" + "\" badge bg-success text-white \"" + ">未到齊</span>";
+            if (e.data.exitlist == "Y") {
+                e.cellElement.html(fieldHtml1)
+            }
+            else {
+                e.cellElement.html(fieldHtml)
+            }
+        }
+        function hideInfo(data)
+        {
+            const popup = $("#employee-popup").dxPopup("instance");            
+            popup.show();
+        }
+        if (e.rowType == "data" && e.column.dataField == "oea01") 
+        {
+
+            
+
+        //     .OnCellClick(<text>
+        //    function hideInfo(data)
+        //    {
+        //    const popup = $("#employee-popup").dxPopup("instance");            
+        //    popup.option({
+        //    contentTemplate: $("#popup-template-")
+        //    });
+        //    popup.show();
+        //    }
+        //</text>)
+
+          
+            //var btn = e.data.oea01;
+
+            //btn.onclick = function hideInfo(data) {
+            //    const popup = $("#employee-popup").dxPopup("instance");
+            //    popup.show();
+            //}
+            //};
+
+            OrderID = e.data.oea01;
+            fieldHtml = "<a href=" + "\" ./Receive?Orderid=" + OrderID + " \"" + "target=_blank>" + OrderID + "</a>";
+
+            if (e.data.oea01 != null)
+            {
+               e.cellElement.html(fieldHtml)               
+            }
+        }
+
+    }
+
+</script>
+<style>
+   
+</style>
+
