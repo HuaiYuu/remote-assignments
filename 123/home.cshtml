@@ -1,0 +1,26 @@
+﻿@{   
+    var name = ViewBag.name;  
+    var name1 = ViewBag.name1;   
+    ViewBag.Title = "首頁";
+}
+
+
+
+<div class="red">
+    <p>歡迎!@ViewBag.name1</p>
+</div>
+
+<style>
+
+    .red {
+        text-align: center;
+        margin:10px auto;
+    }
+   .red p{
+        font-family:Arial;
+        font-size:25px;
+        color:orange;
+        flex-wrap: wrap;
+    }
+
+</style>
