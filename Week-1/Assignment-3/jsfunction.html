@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Count and Convert</title>
+  </head>
+  <body>
+    <p> let input1 = ['a', 'b', 'c', 'a', 'c', 'a', 'c'];</p>
+    <p id="Result1"></p>
+    <p id="Result2"></p>
+
+    <p>let input2 = ['e', 'd', 'c', 'd', 'e'];</p>
+    <p id="Result3"></p>
+    <p id="Result4"></p>
+
+
+
+    <script>
+      function countAandB(input) {
+        let count = 0;
+        for (let i = 0; i < input.length; i++) {
+          if (input[i] === 'a' || input[i] === 'b') {
+            count++;
+          }
+        }
+        return count;
+      }
+
+      function toNumber(input) {
+        const result = [];
+        for (let i = 0; i < input.length; i++) {
+          const letter = input[i].toLowerCase();
+          if (letter >= 'a' && letter <= 'z') {
+            const number = letter.charCodeAt(0) - 96;
+            result.push(number);
+          }
+        }
+        return result;
+      }
+
+      let input1 = ['a', 'b', 'c', 'a', 'c', 'a', 'c'];
+      let countResult1 = countAandB(input1);
+      let toNumberResult1 = toNumber(input1);
+
+      let input2 = ['e', 'd', 'c', 'd', 'e'];
+      let countResult2 = countAandB(input2);
+      let toNumberResult2 = toNumber(input2);
+
+      document.getElementById('Result1').textContent = `Result: ${countResult1}`;
+      document.getElementById('Result2').textContent = `Result: ${JSON.stringify(toNumberResult1)}`;
+      document.getElementById('Result3').textContent = `Result: ${countResult2}`;
+      document.getElementById('Result4').textContent = `Result: ${JSON.stringify(toNumberResult2)}`;
+
+     
+console.log(countAandB(input1)); // should print 4 (3 ‘a’ lettersand 1 ‘b’ letter)
+console.log(toNumber(input1)); // should print [1, 2, 3, 1, 3, 1, 3]
+
+console.log(countAandB(input2)); // should print 0
+console.log(toNumber(input2)); // should print [5, 4, 3, 4, 5]
+
+
+    </script>
+  </body>
+</html>
