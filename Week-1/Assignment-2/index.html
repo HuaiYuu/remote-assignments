@@ -1,49 +1,145 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="styles.css" rel="stylesheet">
-    <title>My Blog</title>
-  </head>
-  <body>
-    <header>
-      <h1>My Web Design &amp; Development Blog!</h1> 
-      <nav>
-        <ul>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Articles</a></li>
-          <li><a href="#">Recent Work</a></li>            
-        </ul>
-      </nav>
-    </header>
-    
-    <h2>The Main Articles</h2>   
-    
-     
-      <article>
-      <h3>My Favorite HTML Courses</h3> 
-      <p>Fusce semper id ipsum sed scelerisque. Etiam nec elementum massa. Pellentesque tristique ex ac ipsum hendrerit, eget <a href="#">feugiat ante faucibus</a>.</p>    
-      </article>
-    <article>
-    <h3>10 Handy CSS Features</h3> 
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et <a href="#">ultrices posuere</a>.</p>    
-    </article>
-      <article>
- 
-   <aside>
-     <h3>Follow Me on Social Media:</h3>
-       
-    <ul>
-      <li><a href="#">Twitter</a></li>
-      <li><a href="#">Facebook</a></li>
-      <li><a href="#">LinkedIn</a></li>     
-    </ul>
-        </aside> 
-      </article>
-      
-      
+<head>
+  
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      Lego
+    </div>
+    <nav class="menu">
+      <ul>
+        <li><a href="#">item1</a></li>
+        <li><a href="#">item2</a></li>
+        <li><a href="#">item3</a></li>
+        <li><a href="#">item4</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <footer>
-      <p>&copy; 2017 My Blog</p>
-    </footer>
-  </body>
+  <main>
+    <div class="content-box">
+      <div class="box-top">
+        <p id="welcome-word">welcome</p>
+      </div>     
+    </div>
+
+    <p class="section-title">section title</p>
+    
+      <div class="section">        
+        <div class="box1">box1</div>
+        <div class="box1">box2</div>       
+        <div class="box2">box3</div>
+        <div class="box2">box4</div>        
+      </div>
+      <div class="btn">
+        <button id="btn">call to action</button>
+      </div>
+      
+  </main>
+</body>
 </html>
+
+<style>
+
+  .btn{
+    display: flex;
+    justify-content: center;
+  }
+  #btn{
+    width: 100px;
+    height: 30px;
+  }
+  .section-title{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+
+  }
+  .box1{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .box2{
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .box-top {
+    height: 200px;
+    background-color: skyblue;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #welcome-word {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .logo {
+    text-align: left;
+    margin-left:30px
+  }
+
+  .menu {
+    text-align: right;
+    margin-right:30px;
+  }
+
+  .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu li {
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  /* 示例样式，您可以根据需要进行调整 */
+  .content-box {
+    width: 100%;
+    height: 200px;
+  }
+
+  
+  .section{     
+    display: flex;
+    flex-wrap: wrap; 
+    height: 200px;     
+    justify-content: space-between;         
+    width: 70%;
+    height: 300px;
+    margin: auto;    
+  }
+  
+  
+
+  .section > div {
+    width: 48%;
+    background-color: red;      
+  }
+
+  @media (max-width: 1200px) {
+
+  }
