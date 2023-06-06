@@ -1,12 +1,5 @@
-﻿<!DOCTYPE html>
-<html>
-<body>
-  <main id="result">
-  </main>
-</body>
-</html>
+﻿
 
-<script>
 function avg(data) {
   const products = data.products;
   let totalPrice = 0;
@@ -44,17 +37,5 @@ console.log(
 
 
 
-</script>
-
-<style>
-
-p{
-    color:brown;
-    font-size: 20px;
-}
-
-main{border: 4mm ridge rgba(211, 220, 50, .6);}
 
 
-
-</style>

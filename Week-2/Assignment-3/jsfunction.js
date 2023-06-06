@@ -1,12 +1,6 @@
-﻿<!DOCTYPE html>
-<html>
-<body>
-  <main id="result">
-  </main>
-</body>
-</html>
+﻿
 
-<script>
+
 function count(input)
 {
   const countObj = {};
@@ -76,17 +70,3 @@ for (let i = 0; i < results.length; i++) {
 
 
 
-</script>
-
-<style>
-
-p{
-    color:brown;
-    font-size: 20px;
-}
-
-main{border: 4mm ridge rgba(211, 220, 50, .6);}
-
-
-
-</style>

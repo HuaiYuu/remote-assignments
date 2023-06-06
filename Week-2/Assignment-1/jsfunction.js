@@ -1,12 +1,5 @@
-﻿<!DOCTYPE html>
-<html>
-<body>
-  <main id="result">
-  </main>
-</body>
-</html>
+﻿
 
-<script>
 function max(numbers) {
   if (numbers.length === 0) {
     return undefined; 
@@ -62,17 +55,4 @@ for (let i = 0; i < results.length; i++) {
   mainElement.appendChild(resultElement);
 }
 
-</script>
 
-<style>
-
-p{
-    color:brown;
-    font-size: 20px;
-}
-
-main{border: 4mm ridge rgba(211, 220, 50, .6);}
-
-
-
-</style>
